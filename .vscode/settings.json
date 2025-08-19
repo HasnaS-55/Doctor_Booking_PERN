@@ -1,0 +1,20 @@
+{
+  "sqltools.connections": [
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true
+        }
+      },
+      "previewLimit": 50,
+      "server": "ep-morning-smoke-a2uryx3x-pooler.eu-central-1.aws.neon.tech",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "password": "npg_JR0tFQ2DWoVC",
+      "username": "neondb_owner",
+      "database": "doc_reservation",
+      "name": "doc_reservation",
+      "group": "neon"
+    }
+  ]
+}
