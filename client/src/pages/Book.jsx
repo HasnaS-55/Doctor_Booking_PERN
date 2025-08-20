@@ -1,4 +1,3 @@
-// src/pages/Book.jsx
 import { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../api/axios';

@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-// src/pages/DoctorRegister.jsx
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { doctorRegister } from "../slices/authDoctorSlice";
@@ -50,7 +48,7 @@ export default function DoctorRegister() {
     image: "",
   });
 
-  const [skills, setSkills] = useState([]); // text[]
+  const [skills, setSkills] = useState([]);
   const [skillInput, setSkillInput] = useState("");
   const [showPwd, setShowPwd] = useState(false);
   const [imageFile, setImageFile] = useState(null);
@@ -83,15 +81,15 @@ export default function DoctorRegister() {
     e.preventDefault();
     try {
       // 1) upload the image only now, if selected
-      let imageUrl = form.image || null;  // if you ever allow pasting a URL
+      let imageUrl = form.image || null;
       if (imageFile) {
         const fd = new FormData();
-        fd.append('file', imageFile);
-        // adjust the endpoint/response to your server
-        const { data } = await api.post('/upload', fd, {
-          headers: { 'Content-Type': 'multipart/form-data' },
+        fd.append("file", imageFile);
+
+        const { data } = await api.post("/upload", fd, {
+          headers: { "Content-Type": "multipart/form-data" },
         });
-        imageUrl = data.url; // <-- your /upload should return { url: "https://..." }
+        imageUrl = data.url;
       }
 
       // 2) build payload and register
@@ -100,15 +98,13 @@ export default function DoctorRegister() {
         location: form.location || null,
         phone_number: form.phone_number || null,
         about: form.about || null,
-        image: imageUrl,                 // <-- single final URL
+        image: imageUrl,
         skills: skills.length ? skills : null,
       };
 
       await dispatch(doctorRegister(payload)).unwrap();
-      nav('/dashboard/doctor');
-    } catch {
-      /* error shown from store */
-    }
+      nav("/dashboard/doctor");
+    } catch {}
   };
 
   return (
@@ -339,17 +335,18 @@ export default function DoctorRegister() {
           </div>
 
           {/* Profile image */}
-          
-    <div>
-      <label className="block text-sm font-medium text-[#0B0A0A] mb-1">Profile image</label>
-      <ImageUploader
-        file={imageFile}
-        onFile={setImageFile}
-        onClear={() => setImageFile(null)}
-      />
-    
 
-            {/* Optional extra preview (ImageUploader already shows one) */}
+          <div>
+            <label className="block text-sm font-medium text-[#0B0A0A] mb-1">
+              Profile image
+            </label>
+            <ImageUploader
+              file={imageFile}
+              onFile={setImageFile}
+              onClear={() => setImageFile(null)}
+            />
+
+            {/* preview ImageUploader */}
             {form.image && (
               <div className="mt-2 flex items-center gap-3">
                 <img
@@ -386,7 +383,7 @@ export default function DoctorRegister() {
             </div>
           </div>
 
-          {/* Skills chips */}
+          {/* Skills */}
           <div>
             <label className="block text-sm font-medium text-[#0B0A0A] mb-1">
               Skills

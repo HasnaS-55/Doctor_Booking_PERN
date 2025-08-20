@@ -19,8 +19,8 @@ export const patientLogin = createAsyncThunk(
   'authPatient/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      await api.post('/auth/login', { email, password });   // sets HTTP-only cookie
-      const { data } = await api.get('/auth/me');           // { id, user_name, email }
+      await api.post('/auth/login', { email, password });   
+      const { data } = await api.get('/auth/me');          
       return data;
     } catch (e) {
       return rejectWithValue(e.response?.data?.error || 'Login failed');
@@ -28,7 +28,7 @@ export const patientLogin = createAsyncThunk(
   }
 );
 
-/** Who am I? (cookie-based) */
+
 export const patientMe = createAsyncThunk(
   'authPatient/me',
   async (_, { rejectWithValue }) => {
@@ -41,7 +41,7 @@ export const patientMe = createAsyncThunk(
   }
 );
 
-/** Logout (clears cookie) */
+
 export const patientLogout = createAsyncThunk('authPatient/logout', async () => {
   await api.post('/auth/logout');
   return true;

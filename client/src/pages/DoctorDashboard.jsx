@@ -25,7 +25,7 @@ export default function DoctorDashboard() {
   }, [user, meStatus, dispatch]);
 
   useEffect(() => {
-    // load all doctor appointments (optionally you can pass a range)
+    
     if (user?.id) dispatch(fetchDoctorAppointments({}));
   }, [user?.id, dispatch]);
 

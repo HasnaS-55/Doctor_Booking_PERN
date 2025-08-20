@@ -3,7 +3,7 @@ import api from '../api/axios';
 
 export const fetchSlots = createAsyncThunk('availability/fetch', async ({ doctorId, date }, { rejectWithValue }) => {
   try { const { data } = await api.get(`/doctors/${doctorId}/availability`, { params: { date } }); return data; }
-  // eslint-disable-next-line no-unused-vars
+  
   catch (e) { return rejectWithValue('Failed'); }
 });
 

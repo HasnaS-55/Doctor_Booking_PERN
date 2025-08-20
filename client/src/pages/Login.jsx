@@ -1,5 +1,3 @@
-/* eslint-disable no-empty */
-// src/pages/Login.jsx
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { patientLogin, patientMe } from '../slices/authPatientSlice';

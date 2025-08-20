@@ -1,4 +1,3 @@
-// src/pages/DoctorLogin.jsx
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { doctorLogin } from '../slices/authDoctorSlice';
@@ -28,7 +27,7 @@ export default function DoctorLogin() {
       await dispatch(doctorLogin({ email, password })).unwrap();
       nav('/dashboard/doctor');
     } catch {
-      // error shown via store
+      
     }
   };
 
@@ -65,7 +64,7 @@ export default function DoctorLogin() {
 
         {/* Form */}
         <form onSubmit={submit} className="space-y-4">
-          {/* Email */}
+          
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-[#0B0A0A] mb-1">
               Email

@@ -1,7 +1,6 @@
-/* src/index.css */
 @import "tailwindcss";
 
-/* Define your theme tokens here (v4 way) */
+
 @theme {
   --font-sans: "Onest", system-ui, sans-serif;
 
@@ -10,7 +9,7 @@
   --color-tree-blue:  #246AFE;
 }
 
-/* Global base styles */
+
 @layer base {
   html { font-family: var(--font-sans); }
   body { @apply bg-tree-light text-tree-dark; }

@@ -1,4 +1,3 @@
-// src/slices/appointmentsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import api from '../api/axios';
 
@@ -36,7 +35,7 @@ export const myAppointments = createAsyncThunk(
 );
 
 /**
- * Doctor: list appointments (optionally by status/date range)
+ * Doctor: list appointments
  * GET /api/doctor/appointments?status=&from=&to=
  */
 export const fetchDoctorAppointments = createAsyncThunk(
@@ -51,7 +50,7 @@ export const fetchDoctorAppointments = createAsyncThunk(
   }
 );
 
-// Back-compat alias (so existing imports `doctorAppointments` still work)
+
 export const doctorAppointments = fetchDoctorAppointments;
 
 /**
@@ -63,7 +62,7 @@ export const updateAppointmentStatus = createAsyncThunk(
   async ({ id, status }, { rejectWithValue }) => {
     try {
       const { data } = await api.patch(`/doctor/appointments/${id}`, { status });
-      // Expect the updated appointment row back
+      
       return data;
     } catch (e) {
       return rejectWithValue(e.response?.data?.error || 'Failed to update status');
@@ -83,9 +82,9 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (b) => {
-    // Create (patient)
+    
     b.addCase(createAppointment.fulfilled, (s, a) => {
-      // Put newest on top for patient view
+      
       s.mine = [a.payload, ...s.mine];
     });
 

@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { myAppointments } from '../slices/appointmentsSlice';
-import { patientMe, patientLogout } from '../slices/authPatientSlice';
-import PatientCalendar from '../components/PatientCalendar';
-import { Link, useNavigate } from 'react-router-dom';
-import Book_Filter from '../components/book_filter';
-import { LayoutDashboard, CalendarDays, LogOut, UserRound } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { myAppointments } from "../slices/appointmentsSlice";
+import { patientMe, patientLogout } from "../slices/authPatientSlice";
+import PatientCalendar from "../components/PatientCalendar";
+import { Link, useNavigate } from "react-router-dom";
+import Book_Filter from "../components/book_filter";
+import { LayoutDashboard, CalendarDays, LogOut, UserRound } from "lucide-react";
 
 export default function PatientDashboard() {
   const dispatch = useDispatch();
   const { mine = [] } = useSelector((s) => s.appointments);
   const { user, status } = useSelector((s) => s.authPatient);
   const nav = useNavigate();
-  const [tab, setTab] = useState('dashboard'); // 'dashboard' | 'calendar'
+  const [tab, setTab] = useState("dashboard");
 
-  // Ensure /auth/me is in store once
+  // Ensure /auth/me is in store
   useEffect(() => {
-    if (!user && status === 'idle') dispatch(patientMe());
+    if (!user && status === "idle") dispatch(patientMe());
   }, [user, status, dispatch]);
 
   // Load appointments after we know the user
@@ -24,17 +24,21 @@ export default function PatientDashboard() {
     if (user?.id) dispatch(myAppointments());
   }, [user?.id, dispatch]);
 
-  if (!user && status !== 'loading') {
+  if (!user && status !== "loading") {
     return (
       <div className="p-6">
-        Please <Link to="/login" className="underline text-[#246AFE]">login</Link>.
+        Please{" "}
+        <Link to="/login" className="underline text-[#246AFE]">
+          login
+        </Link>
+        .
       </div>
     );
   }
 
   const logout = async () => {
     await dispatch(patientLogout());
-    nav('/');
+    nav("/");
   };
 
   return (
@@ -50,12 +54,12 @@ export default function PatientDashboard() {
                   <UserRound size={18} />
                 </div>
                 <div className="min-w-0">
-                  {/* Azul username */}
+                  {/* username */}
                   <div className="font-semibold truncate text-[#246AFE]">
-                    {user?.user_name || 'Patient'}
+                    {user?.user_name || "Patient"}
                   </div>
                   <div className="text-xs text-gray-500 truncate">
-                    {user?.email || ''}
+                    {user?.email || ""}
                   </div>
                 </div>
               </div>
@@ -63,22 +67,26 @@ export default function PatientDashboard() {
               {/* Nav buttons */}
               <nav className="space-y-2">
                 <button
-                  onClick={() => setTab('dashboard')}
+                  onClick={() => setTab("dashboard")}
                   className={`w-full inline-flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition
-                    ${tab === 'dashboard'
-                      ? 'bg-[#246AFE] text-white border-transparent'
-                      : 'bg-white text-[#0B0A0A] border-black/10 hover:bg-gray-50'}`}
+                    ${
+                      tab === "dashboard"
+                        ? "bg-[#246AFE] text-white border-transparent"
+                        : "bg-white text-[#0B0A0A] border-black/10 hover:bg-gray-50"
+                    }`}
                 >
                   <LayoutDashboard size={16} />
                   <span>Dashboard</span>
                 </button>
 
                 <button
-                  onClick={() => setTab('calendar')}
+                  onClick={() => setTab("calendar")}
                   className={`w-full inline-flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition
-                    ${tab === 'calendar'
-                      ? 'bg-[#246AFE] text-white border-transparent'
-                      : 'bg-white text-[#0B0A0A] border-black/10 hover:bg-gray-50'}`}
+                    ${
+                      tab === "calendar"
+                        ? "bg-[#246AFE] text-white border-transparent"
+                        : "bg-white text-[#0B0A0A] border-black/10 hover:bg-gray-50"
+                    }`}
                 >
                   <CalendarDays size={16} />
                   <span>Calendar</span>
@@ -99,12 +107,14 @@ export default function PatientDashboard() {
 
           {/* MAIN CONTENT */}
           <main className="flex-1 space-y-6">
-            {tab === 'dashboard' ? (
+            {tab === "dashboard" ? (
               <>
                 {/* Appointments */}
                 <section className="bg-white rounded-2xl shadow-sm border border-black/5 p-4">
                   <div className="flex items-center justify-between">
-                    <h1 className="text-xl font-semibold text-[#0B0A0A]">My Appointments</h1>
+                    <h1 className="text-xl font-semibold text-[#0B0A0A]">
+                      My Appointments
+                    </h1>
                   </div>
 
                   <div className="mt-3 space-y-2">
@@ -124,11 +134,11 @@ export default function PatientDashboard() {
                         <div
                           className={`text-xs capitalize px-2.5 py-1 rounded-full border
                             ${
-                              a.status === 'confirmed'
-                                ? 'bg-green-50 text-green-700 border-green-200'
-                                : a.status === 'rejected'
-                                ? 'bg-rose-50 text-rose-700 border-rose-200'
-                                : 'bg-amber-50 text-amber-700 border-amber-200'
+                              a.status === "confirmed"
+                                ? "bg-green-50 text-green-700 border-green-200"
+                                : a.status === "rejected"
+                                ? "bg-rose-50 text-rose-700 border-rose-200"
+                                : "bg-amber-50 text-amber-700 border-amber-200"
                             }`}
                         >
                           {a.status}
@@ -136,12 +146,14 @@ export default function PatientDashboard() {
                       </div>
                     ))}
                     {mine.length === 0 && (
-                      <div className="text-sm text-gray-600">No appointments yet.</div>
+                      <div className="text-sm text-gray-600">
+                        No appointments yet.
+                      </div>
                     )}
                   </div>
                 </section>
 
-                {/* Book filter below */}
+                {/* Book filter */}
                 <section className="bg-tree-blue rounded-2xl shadow-sm border border-black/5 p-4">
                   <h2 className="text-lg font-semibold text-white mb-2">
                     Book a new appointment
@@ -151,9 +163,8 @@ export default function PatientDashboard() {
               </>
             ) : (
               <section className="bg-white rounded-2xl shadow-sm border border-black/5 p-4">
-  <PatientCalendar />
-</section>
-
+                <PatientCalendar />
+              </section>
             )}
           </main>
         </div>

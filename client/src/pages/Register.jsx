@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { patientRegister } from '../slices/authPatientSlice';
@@ -21,11 +20,11 @@ export default function Register() {
     e.preventDefault();
     try {
       await dispatch(patientRegister({ user_name, email, password })).unwrap();
-      // keep your original behavior:
+      
       nav('/dashboard/patient');
-      // (Optional UX: redirect to /login instead if your API doesn't auto-login after register)
+      
     } catch {
-      /* error is shown from store */
+      
     }
   };
 
