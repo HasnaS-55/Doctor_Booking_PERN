@@ -1,9 +1,8 @@
--- patients
 INSERT INTO patients (user_name, email, password_hash)
 VALUES
   ('demo_patient', 'patient@example.com', '$2b$10$0CM5tX0j3cOfxXrXk0bI6O5n2N4d8wK6a2s2z8g3oP5t4c9b2l2Zy'); -- bcrypt hash: "password" (dummy)
 
--- doctors (6 across 3-4 fields)
+
 INSERT INTO doctors (first_name,last_name,email,password_hash,field,location,phone_number,about,skills,image)
 VALUES
   ('Amina','El Fassi','amina@clinic.ma','$2b$10$0CM5tX0j3cOfxXrXk0bI6O5n2N4d8wK6a2s2z8g3oP5t4c9b2l2Zy','Cardiology','Rabat','+212600000001','Cardiologist with 8y exp',ARRAY['ECG','Hypertension'],''),

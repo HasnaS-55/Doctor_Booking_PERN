@@ -70,9 +70,9 @@ router.post('/availability', requireDoctor, async (req, res) => {
       await client.query(
         `INSERT INTO doctor_availability (doctor_id, weekday, start_time, end_time, slot_minutes, is_active)
          VALUES ($1,$2,$3,$4,$5,$6)
-         ON CONFLICT (id) DO NOTHING`, // table has no unique(doctor_id,weekday), so do manual upsert:
+         ON CONFLICT (id) DO NOTHING`, 
       [req.user.id, row.weekday, row.start_time + ':00', row.end_time + ':00', row.slot_minutes, row.is_active]);
-      // better: delete then insert for that weekday to keep a single row
+      // delete then insert for that weekday to keep a single row
       await client.query('DELETE FROM doctor_availability WHERE doctor_id=$1 AND weekday=$2', [req.user.id, row.weekday]);
       await client.query(
         `INSERT INTO doctor_availability (doctor_id, weekday, start_time, end_time, slot_minutes, is_active)

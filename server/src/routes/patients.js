@@ -23,7 +23,7 @@ router.get('/patients/:id', requirePatient, async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Only allow the patient to read their own record (simple privacy guard)
+    
     if (req.user.id !== id) return res.status(403).json({ error: 'Forbidden' });
 
     const allow = new Set(['id', 'user_name', 'email', 'created_at', 'updated_at']);

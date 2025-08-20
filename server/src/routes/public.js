@@ -111,7 +111,7 @@ router.get("/doctors/:id/availability", async (req, res) => {
 
   if (avs.length === 0) return res.json([]);
 
-  // generate slots from availability windows
+ 
   const slots = [];
   for (const av of avs) {
     const [sh, sm] = av.start_time.split(":").map(Number);
