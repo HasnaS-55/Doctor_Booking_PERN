@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useId, useRef } from "react";
 
 export default function CircularText({
@@ -6,7 +5,7 @@ export default function CircularText({
   separator = "   •   ",
   repeat = 10,
   size = 240,
-  radius, // default is size * 0.38
+  radius, 
   className = "text-white",
   fontSize = 16,
   fontWeight = 600,
@@ -14,7 +13,7 @@ export default function CircularText({
   speedClass = "animate-[spin_12s_linear_infinite]",
   clockwise = true,
 }) {
-  // If you're on React 18+, useId works. If not, fallback to a stable ref id.
+  
   const rid = (() => {
     try {
       return useId();
@@ -48,7 +47,7 @@ export default function CircularText({
         } absolute inset-0 ${className}`}
         aria-hidden="true"
       >
-        {/* 🔑 This path is what the text rides on */}
+        {/* what the text rides on */}
         <defs>
           <path
             id={pathId}
@@ -59,14 +58,14 @@ export default function CircularText({
           />
         </defs>
 
-        {/* Start at top (-90deg). Keep natural spacing (no textLength). */}
+        
         <g transform={`rotate(-90 ${cx} ${cy})`}>
           <text
             xmlSpace="preserve"
             fontSize={fontSize}
             fontWeight={fontWeight}
             letterSpacing={`${letterSpacingEm}em`}
-            fill="currentColor" /* makes Tailwind text-* control color */
+            fill="currentColor" 
             style={{ textTransform: "uppercase" }}
           >
             <textPath href={`#${pathId}`} startOffset="0%">

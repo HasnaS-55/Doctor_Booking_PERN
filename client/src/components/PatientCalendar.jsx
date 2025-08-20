@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// src/components/PatientCalendar.jsx
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
@@ -12,7 +10,7 @@ const dayLabel = (d) => d.toLocaleDateString(undefined, { weekday: "short" });
 
 function startOfWeek(date = new Date()) {
   const d = new Date(date);
-  const day = (d.getDay() + 6) % 7; // Mon=0..Sun=6
+  const day = (d.getDay() + 6) % 7; 
   d.setDate(d.getDate() - day);
   d.setHours(0, 0, 0, 0);
   return d;
@@ -35,7 +33,7 @@ export default function PatientCalendar({
 }) {
   const mineFromStore = useSelector((s) => s.appointments?.mine || []);
 
-  // ✅ show only confirmed appts
+
   const confirmed = useMemo(
     () =>
       (propAppointments ?? mineFromStore).filter(
@@ -45,7 +43,7 @@ export default function PatientCalendar({
   );
 
   const [anchor, setAnchor] = useState(new Date());
-  const [activeId, setActiveId] = useState(null); // raise z-index when selected
+  const [activeId, setActiveId] = useState(null); 
 
   const weekStart = useMemo(() => startOfWeek(anchor), [anchor]);
   const days = [...Array(7)].map((_, i) => {
@@ -185,7 +183,7 @@ export default function PatientCalendar({
         {/* Days area — allow spill (no clipping) */}
         <div
           className="col-span-7 relative rounded-xl border border-tree-dark/10 bg-white"
-          style={{ height: gridHeight, overflow: "visible" }} // ⬅️ key change
+          style={{ height: gridHeight, overflow: "visible" }} 
         >
           {/* subtle grid */}
           <div
@@ -205,7 +203,7 @@ export default function PatientCalendar({
           {/* events (confirmed only) */}
           {weekAppointments.map((a, idx) => {
             const d = toLocalDate(a.date.slice(0, 10));
-            const dayIdx = (d.getDay() + 6) % 7; // Mon=0..6
+            const dayIdx = (d.getDay() + 6) % 7; 
             const tStart = a.time?.slice(0, 5) || "09:00";
             const startMin = parseTimeToMinutes(tStart);
             const startRow = Math.max(

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useMemo, useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollReveal({
   children,
-  scrollContainerRef,        // optional: pass a ref to a custom scrollable element
+  scrollContainerRef,        
   enableBlur = true,
   baseOpacity = 0.1,
   baseRotation = 3,
@@ -16,22 +15,22 @@ export default function ScrollReveal({
   textClassName = "",
   rotationEnd = "bottom bottom",
   wordAnimationEnd = "bottom bottom",
-  as: Tag = "h2",            // semantic container tag (h2 by default)
+  as: Tag = "h2",            
 }) {
   const containerRef = useRef(null);
 
-  // Build a safe string from children (handles multiline JSX text)
+
   const textString = useMemo(() => {
     return React.Children.toArray(children)
       .map((node) => (typeof node === "string" || typeof node === "number" ? String(node) : ""))
       .join("");
   }, [children]);
 
-  // Split into spans, preserving spaces
+  
   const split = useMemo(() => {
     return textString.split(/(\s+)/).map((chunk, i) =>
       /^\s+$/.test(chunk)
-        ? <span key={`s-${i}`}>{chunk}</span> // spaces kept as is
+        ? <span key={`s-${i}`}>{chunk}</span> 
         : <span key={`w-${i}`} className="inline-block word">{chunk}</span>
     );
   }, [textString]);
@@ -40,7 +39,7 @@ export default function ScrollReveal({
     const el = containerRef.current;
     if (!el) return;
 
-    // Build base ScrollTrigger config
+    
     const stBase = {
       trigger: el,
       start: "top bottom",
@@ -52,14 +51,14 @@ export default function ScrollReveal({
       scrub: true,
     };
 
-    // Only set scroller if a custom container is provided
+    
     if (scrollContainerRef?.current) {
       stBase.scroller = scrollContainerRef.current;
       stWords.scroller = scrollContainerRef.current;
     }
 
     const ctx = gsap.context(() => {
-      // Rotation of the entire block
+      
       gsap.fromTo(
         el,
         { transformOrigin: "0% 50%", rotate: baseRotation },
@@ -72,11 +71,11 @@ export default function ScrollReveal({
 
       const words = el.querySelectorAll(".word");
 
-      // Set initial styles once (more performant)
+      // Set initial styles once
       gsap.set(words, { opacity: baseOpacity, willChange: "opacity, filter" });
       if (enableBlur) gsap.set(words, { filter: `blur(${blurStrength}px)` });
 
-      // Create a timeline for word reveal (opacity + optional blur)
+      
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: { ...stWords, end: wordAnimationEnd },
@@ -91,11 +90,11 @@ export default function ScrollReveal({
         tl.to(words, {
           filter: "blur(0px)",
           stagger: 0.05,
-        }, 0); // align with opacity start
+        }, 0); 
       }
     }, containerRef);
 
-    // Proper cleanup (kills only what we created here)
+    
     return () => ctx.revert();
   }, [scrollContainerRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength]);
 

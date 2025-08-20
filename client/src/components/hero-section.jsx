@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import PillNav from "./nav";
 import HexGridOverlayFilled from "./hexo";
@@ -54,7 +53,7 @@ export default function HeroBooking() {
           <PillNav
             items={items}
             mobileExtraItems={mobileExtra} // mobile adds Register/Login
-            inline // embed instead of fixed
+            inline 
             activeHref={activeHref}
             onItemClick={handleItemClick}
             className="custom-nav"
@@ -148,7 +147,7 @@ export default function HeroBooking() {
           <div className="w-1/2 h-full bg-white/30 relative flex flex-col justify-end p-5 rounded-2xl ">
             <div className="flex justify-between">
               <PillNav
-                items={items} // ONLY HOME/ABOUT/BOOK on desktop
+                items={items} 
                 activeHref={activeHref}
                 onItemClick={handleItemClick}
                 className="custom-nav"
@@ -231,7 +230,7 @@ export default function HeroBooking() {
             </div>
           </div>
 
-          {/* Right panel (unchanged) */}
+          {/* Right panel */}
           <div className="w-1/2 h-full flex flex-col items-center justify-between z-[10] bg-tree-blue rounded-2xl overflow-hidden p-5">
             
             <HexGridOverlayFilled

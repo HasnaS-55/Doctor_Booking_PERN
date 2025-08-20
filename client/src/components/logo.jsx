@@ -1,13 +1,13 @@
 import React from "react";
 
 export default function BookDoctorLogo({
-  className = "h-12 w-auto", // overall size
+  className = "h-12 w-auto", 
   ariaLabel = "Book Doctor logo",
   showTagline = false,
   tagline = "Book an appointment with a doctor",
-  textClassName = "text-neutral-900 dark:text-white", // “B” and “k”
-  accentClassName = "text-blue-600 dark:text-blue-400", // blue “oo”, cross, dot
-  strokeClassName = "text-neutral-900 dark:text-white", // stethoscope tube
+  textClassName = "text-neutral-900 dark:text-white", 
+  accentClassName = "text-blue-600 dark:text-blue-400", 
+  strokeClassName = "text-neutral-900 dark:text-white", 
 }) {
   return (
     <svg
@@ -30,7 +30,7 @@ export default function BookDoctorLogo({
         B
       </text>
 
-      {/* The two "o" letters as blue rings */}
+      
       <g
         className={accentClassName}
         stroke="currentColor"
@@ -43,7 +43,7 @@ export default function BookDoctorLogo({
         <circle cx="400" cy="140" r="54" />
       </g>
 
-      {/* The 'k' */}
+      
       <text
         x="510"
         y="175"
@@ -56,7 +56,7 @@ export default function BookDoctorLogo({
         k
       </text>
 
-      {/* Stethoscope */}
+      
       <g
         className={strokeClassName}
         stroke="currentColor"
@@ -69,7 +69,7 @@ export default function BookDoctorLogo({
         <circle cx="670" cy="196" r="20" />
       </g>
 
-      {/* Blue dot in the chest piece */}
+      
       <circle
         cx="670"
         cy="196"
@@ -78,7 +78,7 @@ export default function BookDoctorLogo({
         fill="currentColor"
       />
 
-      {/* Medical cross accent */}
+      
       <g
         transform="translate(610,64)"
         className={accentClassName}
@@ -88,7 +88,7 @@ export default function BookDoctorLogo({
         <rect x="0" y="20" width="60" height="20" rx="4" />
       </g>
 
-      {/* Optional tagline */}
+      
       {showTagline && (
         <text
           x="40"

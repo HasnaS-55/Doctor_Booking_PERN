@@ -22,9 +22,9 @@ export default function HexGridOverlayFilled({
     [rows, cols]
   );
 
-  // Flat-top layout: offset every other row
+  
   const cellW = size + gapX;
-  const cellH = size * 0.75 + gapY; // visually pleasing vertical step
+  const cellH = size * 0.75 + gapY; 
 
   return (
     <div
@@ -40,7 +40,7 @@ export default function HexGridOverlayFilled({
             className="absolute"
             style={{ left: x, top: y, width: size, height: size }}
           >
-            {/* Filled hexagon (soft white) */}
+            {/* Filled hexagon */}
             <div
               className="absolute inset-0"
               style={{
@@ -49,8 +49,8 @@ export default function HexGridOverlayFilled({
                 // Flat-top hex
                 clipPath:
                   "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
-                borderRadius: 8, // slight smoothing
-                filter: "blur(0.2px)", // tiny blur to avoid harsh edges
+                borderRadius: 8, 
+                filter: "blur(0.2px)", 
               }}
             />
             {/* Outline for subtle definition */}

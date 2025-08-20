@@ -20,7 +20,7 @@ export default function ImageUploader({ file, onFile, onClear }) {
     const f = e.target.files?.[0];
     if (!f) return;
     if (!f.type.startsWith("image/")) return;
-    onFile?.(f); // <-- store file, do NOT upload
+    onFile?.(f); 
   };
 
   const onDrop = (e) => {
@@ -29,7 +29,7 @@ export default function ImageUploader({ file, onFile, onClear }) {
     const f = e.dataTransfer.files?.[0];
     if (!f) return;
     if (!f.type.startsWith("image/")) return;
-    onFile?.(f); // <-- store last file only
+    onFile?.(f); 
   };
 
   return (

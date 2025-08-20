@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState, useId } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
@@ -19,7 +17,7 @@ const PillNav = ({
   initialLoadAnimation = true,
   inline = false,
 }) => {
-  /* ---------- responsive ---------- */
+  
   const getIsLg = () =>
     typeof window !== "undefined" &&
     window.matchMedia?.("(min-width: 1024px)").matches;
@@ -43,7 +41,7 @@ const PillNav = ({
   const effectiveBaseColor = isLg ? baseColor : "#246AFE";
   const resolvedPillTextColor = pillTextColor ?? effectiveBaseColor;
 
-  /* ---------- active + scroll spy ---------- */
+  
   const [active, setActive] = useState(
     controlledActive || items?.[0]?.href || "#home"
   );
@@ -265,7 +263,7 @@ const PillNav = ({
     });
   };
 
-  /* ---------- utilities ---------- */
+ 
   const isExternalLink = (href = "") =>
     href.startsWith("http://") ||
     href.startsWith("https://") ||

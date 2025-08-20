@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-// src/components/DoctorAvailability.jsx
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/axios";
 import { Check, Loader2, Save } from "lucide-react";
@@ -24,7 +22,7 @@ const EMPTY_ROW = (weekday) => ({
 
 export default function DoctorAvailability() {
   const [rows, setRows] = useState(() => DAYS.map((d) => EMPTY_ROW(d.weekday)));
-  const [status, setStatus] = useState("idle"); // idle | loading | saving | saved | error
+  const [status, setStatus] = useState("idle"); 
   const [error, setError] = useState("");
 
   // Helper to update a single day
@@ -39,7 +37,7 @@ export default function DoctorAvailability() {
     (async () => {
       try {
         setStatus("loading");
-        // If your router is mounted elsewhere, adjust the path (e.g. "/api/doctor/availability")
+        
         const { data } = await api.get("/doctor/availability");
         if (!mounted) return;
 
@@ -70,7 +68,7 @@ export default function DoctorAvailability() {
   }, []);
 
   const canSave = useMemo(() => {
-    // Quick validation: all active days must have start < end and sane slot
+    
     for (const r of rows) {
       if (!r.is_active) continue;
       if (
@@ -93,8 +91,8 @@ export default function DoctorAvailability() {
         .filter((r) => r.is_active)
         .map((r) => ({
           weekday: r.weekday,
-          start_time: r.start_time, // backend appends :00
-          end_time: r.end_time, // backend appends :00
+          start_time: r.start_time, 
+          end_time: r.end_time, 
           slot_minutes: r.slot_minutes,
           is_active: true,
         }));
@@ -159,7 +157,7 @@ export default function DoctorAvailability() {
           </button>
           <button
             type="button"
-            onClick={() => copyWeekday(1, [2, 3, 4, 5])} // Mon -> Tue..Fri
+            onClick={() => copyWeekday(1, [2, 3, 4, 5])} 
             className="px-3 py-1.5 rounded-md border border-black/10 text-sm hover:bg-gray-50"
             title="Copy Monday to Tue–Fri"
           >

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo, useState } from "react";
 import { CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react";
 
@@ -47,7 +46,7 @@ function Avatar({ name = "P", src }) {
 function DetailsModal({ appt, onClose }) {
   if (!appt) return null;
 
-  // Normalize patient fields from possible shapes
+  
   const pName =
     appt.patient_name || appt.user_name || appt.patient?.user_name || "Patient";
   const pEmail = appt.patient_email || appt.email || appt.patient?.email || "";
@@ -227,7 +226,7 @@ export default function DoctorCalendar({
 
       {/* Grid */}
       <div className="grid grid-cols-[64px_repeat(7,minmax(0,1fr))] gap-2">
-        {/* Time rail */}
+        
         <div className="relative" style={{ height: gridHeight }}>
           {[...Array(endHour - startHour + 1)].map((_, i) => {
             const hour = startHour + i;
@@ -246,7 +245,7 @@ export default function DoctorCalendar({
           })}
         </div>
 
-        {/* Days area (no clipping) */}
+        {/* Days area */}
         <div
           className="col-span-7 relative rounded-xl border border-tree-dark/10 bg-white"
           style={{ height: gridHeight, overflow: "visible" }}

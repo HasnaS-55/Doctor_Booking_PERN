@@ -1,15 +1,14 @@
 import React from "react";
 import { Mail, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
 import BookDoctorLogo from "./logo";
 
 export default function Footer() {
   return (
     <footer className="px-4 sm:px-6 lg:px-8 py-8">
       <div className="mx-auto w-full bg-tree-dark text-white rounded-2xl ring-1 ring-white/10 overflow-hidden">
-        {/* content */}
+        
         <div className="grid gap-8 p-6 sm:p-8 md:grid-cols-3">
-          {/* brand / blurb */}
+          
           <div>
             <BookDoctorLogo
               className="h-10 w-auto"
@@ -24,7 +23,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* contact */}
+          
           <div className="flex">
             <ul className="mt-4 space-y-3">
               <li className="flex items-center gap-3">
@@ -51,7 +50,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          {/* bottom bar */}
+         
           <div className="flex flex-col sm:flex-row items-end justify-end gap-2 text-xs text-white/60">
             <span>Created at 2025</span>
             <span>
